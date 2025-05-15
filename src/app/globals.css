@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: "Nothing You Could Do", "cursive";
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  width: 100%;
+  height: 500vh;
+  background-color: #171717;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+
+section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+footer {
+  position: relative;
+  width: 100vw;
+  height: 75svh;
+  background-color: #0f0f0f;
+  color: #fff;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+footer h1 {
+  text-transform: uppercase;
+  font-family: "FK Screamer", sans-serif;
+  font-size: 12vw;
+  font-weight: 500;
+  line-height: 0.85;
+}
+
+.copyright-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.explosion-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  pointer-events: none;
+}
+
+.explosion-particle-img {
+  position: absolute;
+  bottom: -400px;
+  left: 50%;
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  transform: translateX(-50%);
+  will-change: transform;
+}
+
+.trail-img {
+  position: absolute;
+  width: 80px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  transform-origin: center;
+  pointer-events: none;
+  will-change: transform;
+  mix-blend-mode: exclusion;
+  opacity: 80%;
+}
+
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 350px;
+  perspective: 1000px;
+}
+
+.card p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.card-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  animation: floating 3s infinite ease-in-out;
+}
+
+#card-1 .card-wrapper {
+  animation-delay: 0;
+}
+
+#card-2 .card-wrapper {
+  animation-delay: 0.2s;
+}
+
+#card-3 .card-wrapper {
+  animation-delay: 0.4s;
+}
+
+#card-4 .card-wrapper {
+  animation-delay: 0.6s;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 0.8em;
+  overflow: hidden;
+}
+
+.flip-card-back {
+  padding: 1em;
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -60%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
