@@ -1,6 +1,7 @@
 {
   "name": "next-cards",
   "version": "0.1.0",
+  "description": "portfolio25",
   "private": true,
   "scripts": {
     "dev": "next dev",
