@@ -84,7 +84,7 @@ export default function Separate() {
     for (let i = 1; i <= 3; i++) {
       rows.push(
         <div className="row" key={i}>
-          <div className="card2 card-left">
+          <div className="cardtwo card-left">
             <Image
               src={`/img-${2 * i - 1}.gif`}
               alt=""
@@ -92,7 +92,7 @@ export default function Separate() {
               height={800}
             />
           </div>
-          <div className="card2 card-right">
+          <div className="cardtwo card-right">
             <Image src={`/img-${2 * i}.gif`} alt="" width={800} height={800} />
           </div>
         </div>

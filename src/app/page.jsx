@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import ReactLenis from "@studio-freight/react-lenis";
+import ReactLenis from "lenis/react";
 import Image from "next/image";
 import { FaDroplet } from "react-icons/fa6";
 
@@ -10,15 +10,16 @@ import ExplosionContainer from "./component/ExplosionContainer";
 import Cards from "./component/Cards/Cards";
 import Separate from "./component/Separate/Separate";
 import LandingReveal from "./component/LandingReveal/LandingReveal";
+import Works from "./component/Works/Works";
 
 export default function Home() {
   const container = useRef(null);
 
   return (
     <ReactLenis root>
-      <LandingReveal />
+      {/* <LandingReveal /> */}
       <Nav />
-      <div className="container" ref={container}>
+      <div className="container">
         {/* Hero and Intro Sections */}
         <section className="hero">
           <div className="sticky top-0 left-0 w-full z-0 bg-[#0a0a0a] h-[35vh]">
@@ -68,7 +69,13 @@ export default function Home() {
         </section>
 
         {/* Cards Section */}
-        <Cards containerRef={container} />
+        <section className="">
+          <Cards containerRef={container} />
+        </section>
+
+        <section className="mt-[280vh]">
+          <Works />
+        </section>
 
         {/* Footer */}
         <footer className="footer">

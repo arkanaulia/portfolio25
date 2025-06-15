@@ -46,9 +46,14 @@ export default function Cards({ containerRef }) {
     const positions = [14, 38, 62, 86];
     const rotations = [-15, -7.5, 7.5, 15];
 
-    const container = containerRef.current;
-    const cardsEl = container?.querySelector(".cards");
+    // Use document.querySelector if containerRef is not provided
+    const cardsEl =
+      containerRef?.current?.querySelector(".cards2") ||
+      document.querySelector(".cards2");
     if (!cardsEl) return;
+
+    // Remove absolute positioning from .cards2 if present in CSS
+    // and ensure it has position: relative or static
 
     ScrollTrigger.create({
       trigger: cardsEl,
@@ -56,6 +61,7 @@ export default function Cards({ containerRef }) {
       end: () => `+=${totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
+      anticipatePin: 1,
     });
 
     cards.forEach((card, index) => {
@@ -101,13 +107,20 @@ export default function Cards({ containerRef }) {
         },
       });
     });
+
+    // Refresh ScrollTrigger after mount to ensure correct pinning
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
   }, [containerRef]);
 
   const handleCardClick = (index) => setActiveCardIndex(index);
   const closeOverlay = () => setActiveCardIndex(null);
 
   return (
-    <section className="cards">
+    <section className="cards2 carding">
+      {" "}
+      {/* added carding class here */}
       <h1 className="text-orange-500 font-display text-7xl absolute inset-0 flex mt-32 justify-center blur-xs">
         Choose My Version.
       </h1>
@@ -125,7 +138,6 @@ export default function Cards({ containerRef }) {
           onClick={() => handleCardClick(index)}
         />
       ))}
-
       {/* Overlays */}
       {activeCardIndex === 0 && <OverlayOne onClose={closeOverlay} />}
       {activeCardIndex === 1 && <OverlayTwo onClose={closeOverlay} />}
