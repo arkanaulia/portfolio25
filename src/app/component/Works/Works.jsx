@@ -89,10 +89,10 @@ export default function Works() {
   return (
     <div className="con relative">
       <div className="titles absolute w-full">
-        <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-32 md:mt-32 justify-center blur-[2px] md:blur-xs">
+        <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-20 md:mt-32 justify-center blur-[2px] md:blur-xs">
           Selected Works
         </h1>
-        <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-32 justify-center">
+        <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-20 justify-center">
           Not that bad. I guess.
         </p>
       </div>
@@ -172,10 +172,10 @@ export default function Works() {
       ))}
 
       <div className="mt-[30vh] md:mt-[40vh] w-full relative">
-        <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex -mt-14 md:mt-0 justify-center blur-[2px] md:blur-xs">
+        <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex -mt-14 md:-mt-20 justify-center blur-[2px] md:blur-xs">
           Grab some Coffee
         </h1>
-        <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-4 -mt-12 justify-center">
+        <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:-mt-16 -mt-12 justify-center">
           Contact Me.
         </p>
         <div className="flex justify-center gap-4 md:gap-8 mt-8 z-20">

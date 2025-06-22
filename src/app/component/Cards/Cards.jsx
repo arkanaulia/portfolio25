@@ -154,12 +154,13 @@ export default function Cards({ containerRef }) {
     <section className="cards2 carding">
       {" "}
       {/* added carding class here */}
-      <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-16 md:mt-32 justify-center blur-[2px] md:blur-xs">
+      <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-10 md:mt-32 justify-center blur-[2px] md:blur-xs">
         Choose My Version.
       </h1>
-      <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-16 justify-center">
+      <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-10 justify-center">
         Whatever you choose, it’s still me.
       </p>
+      
       {cardData.map((card, index) => (
         <Card
           key={index}

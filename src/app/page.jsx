@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <ReactLenis root>
-      {/* <LandingReveal /> */}
+      <LandingReveal />
       <Nav />
       <div className="container max-w-[100svw] overflow-x-hidden">
         <section className="hero">
