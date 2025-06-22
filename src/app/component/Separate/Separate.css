@@ -28,7 +28,7 @@ Image {
   .cardtwo {
     position: relative;
     width: 30%;
-    height: 320px;
+    height: 280px;
     border-radius: 0.75em;
     overflow: hidden;
     will-change: transform;

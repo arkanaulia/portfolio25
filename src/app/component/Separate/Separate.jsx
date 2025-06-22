@@ -118,9 +118,7 @@ export default function Separate() {
             <p>building a career in IT Business Analyst</p>
           </div>
         </div>
-        {/* <div className="btn">
-          <button>Get PRO</button>
-        </div> */}
+       
       </div>
 
       {generateRows()}

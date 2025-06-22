@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -112,23 +113,28 @@ export default function Works() {
           ref={addToListsecRefs}
           className="listsec1 w-1/2 flex justify-center items-center h-96"
         >
-          <h1 className="font-display text-6xl text-orange-500">
-            Dev Projects
-          </h1>
+          <h1 className="font-bold text-6xl text-white">Dev Projects</h1>
         </div>
         <div className="w-1/2 flex flex-col gap-10">
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-100 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl overflow-hidden workcard"
+          >
+            {" "}
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-200 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-300 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
         </div>
       </div>
 
@@ -140,22 +146,28 @@ export default function Works() {
         <div className="w-1/2 flex flex-col gap-10">
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-100 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-200 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-300 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
         </div>
         <div
           ref={addToListsecRefs}
           className="listsec2 w-1/2 flex justify-center items-center h-96"
         >
-          <h1 className="font-display text-6xl text-orange-500">UX Projects</h1>
+          <h1 className="font-bold text-6xl text-white">UX Projects</h1>
         </div>
       </div>
 
@@ -168,21 +180,27 @@ export default function Works() {
           ref={addToListsecRefs}
           className="listsec3 w-1/2 flex justify-center items-center h-96"
         >
-          <h1 className="font-display text-6xl text-orange-500">3D Projects</h1>
+          <h1 className="font-bold text-6xl text-white">3D Projects</h1>
         </div>
         <div className="w-1/2 flex flex-col gap-10">
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-100 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-200 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-300 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
         </div>
       </div>
 
@@ -194,16 +212,46 @@ export default function Works() {
         <div className="w-1/2 flex flex-col gap-10">
           <div
             ref={addToWorkcardRefs}
-            className="w-full bg-amber-100 h-96 rounded-4xl workcard"
-          ></div>
+            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
+          >
+            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          </div>
         </div>
         <div
           ref={addToListsecRefs}
           className="listsec4 w-1/2 flex justify-center items-center h-96"
         >
-          <h1 className="font-display text-6xl text-orange-500">
-            PM and Analyst
-          </h1>
+          <h1 className="font-bold text-6xl text-white">PM and Analyst</h1>
+        </div>
+      </div>
+
+      <div className=" mt-[40vh] absolute w-full">
+        <h1 className="text-orange-500 font-display text-7xl absolute inset-0 flex justify-center blur-xs">
+          Grab some Coffee?
+        </h1>
+        <p className="text-white font-light font-sans text-xl absolute inset-0 flex mt-6 justify-center">
+          Contact Me.
+        </p>
+
+        <div className="absolute inset-0 flex mt-20 justify-center gap-8 z-20">
+          <a
+            href=""
+            className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-8 py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+          >
+            LinkedIn
+          </a>
+          <a
+            href=""
+            className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-8 py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+          >
+            Email
+          </a>
+          <a
+            href=""
+            className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-8 py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+          >
+            Instagram
+          </a>
         </div>
       </div>
     </div>

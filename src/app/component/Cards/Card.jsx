@@ -3,7 +3,7 @@ import Image from "next/image";
 
 // eslint-disable-next-line react/display-name
 const Card = forwardRef(
-  ({ id, frontSrc, frontAlt, backText, onClick }, ref) => {
+  ({ id, frontSrc, frontAlt, backText, onClick, backSrc }, ref) => {
     return (
       <div className="card" id={id} ref={ref} onClick={onClick}>
         <div className="card-wrapper">
@@ -18,7 +18,19 @@ const Card = forwardRef(
               />
             </div>
             <div className="flip-card-back">
-              <p>{backText}</p>
+              <div className=" w-full flex flex-col ">
+                <h1 className="self-start">{backText}</h1>
+                <div className="self-center">
+                  <Image
+                    priority
+                    src={frontSrc}
+                    width={800}
+                    height={800}
+                    alt={backText}
+                  />
+                </div>
+                <h1 className="self-end rotate-180 ">{backText}</h1>
+              </div>
             </div>
           </div>
         </div>

@@ -225,7 +225,7 @@ export default function HoverLogo({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div className="h-full rounded-3xl overflow-hidden">
+    <div className="h-[100vh] w-[100vw] rounded-3xl overflow-hidden">
       <Canvas
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}

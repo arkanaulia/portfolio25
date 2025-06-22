@@ -1,8 +1,11 @@
 "use client";
-import { useRef } from "react";
+
+import { useEffect, useRef } from "react";
 import ReactLenis from "lenis/react";
 import Image from "next/image";
 import { FaDroplet } from "react-icons/fa6";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Nav from "./component/Nav/Nav";
 import HoverLogo from "./component/HoverLogo";
@@ -12,15 +15,61 @@ import Separate from "./component/Separate/Separate";
 import LandingReveal from "./component/LandingReveal/LandingReveal";
 import Works from "./component/Works/Works";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Home() {
   const container = useRef(null);
+  const logooRef = useRef(null);
+  const bglogoRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".logocon",
+        start: "top 30%",
+        end: "top -30%",
+        scrub: true,
+      },
+    });
+
+    tl.to(logooRef.current, {
+      width: "0%",
+    }).to(
+      bglogoRef.current,
+      {
+        width: "100%",
+        zIndex: -1,
+        // scrub: true,
+        filter: "blur(16px)",
+        opacity: 0.5,
+      },
+      "<"
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
+  useEffect(() => {
+    // Pin the titles as before
+    gsap.to(".logocon", {
+      scrollTrigger: {
+        trigger: ".logocon",
+        start: "top top",
+        endTrigger: ".container",
+        end: "bottom 30%",
+        pin: true,
+        scrub: true,
+      },
+    });
+  }, []);
 
   return (
     <ReactLenis root>
       {/* <LandingReveal /> */}
       <Nav />
       <div className="container">
-        {/* Hero and Intro Sections */}
         <section className="hero">
           <div className="sticky top-0 left-0 w-full z-0 bg-[#0a0a0a] h-[35vh]">
             <div className="NAME w-full h-full bg-[url(/hero1.png)] p-5 bg-cover bg-center flex items-center justify-center">
@@ -46,39 +95,41 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="z-50 backdrop-opacity-50 backdrop-blur-xl bg-neutral-900">
-            <div className="w-full flex flex-row h-[65vh] justify-between z-0">
-              <div className="">
+
+          <div className="logocon z-10 backdrop-opacity-50 backdrop-blur-xl bg-neutral-900">
+            <div className="w-full flex flex-row h-[100vh] justify-between items-start z-0">
+              <div className="logoo max-w-[20%]" ref={logooRef}>
                 <Image
                   src="/herologo.svg"
                   alt="herologo"
-                  width={1000}
-                  height={1000}
-                  className="h-full w-full"
+                  width={500}
+                  height={500}
+                  className="pt-4"
                 />
               </div>
-              <div className="w-[85%] p-6">
+              <div
+                className="w-full h-[100vh] p-6 bglogo rounded-3xl overflow-hidden"
+                ref={bglogoRef}
+              >
                 <HoverLogo />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="">
+        <section className="z-20">
           <Separate />
         </section>
 
-        {/* Cards Section */}
-        <section className="">
+        <section className="z-20">
           <Cards containerRef={container} />
         </section>
 
-        <section className="mt-[280vh]">
+        <section className="mt-[280vh] z-20">
           <Works />
         </section>
 
-        {/* Footer */}
-        <footer className="footer">
+        <footer className="footer z-20">
           <h1>Everyone Needs Everything</h1>
           <div className="copyright-info">
             <p>&copy; 2025 arkanaulia</p>

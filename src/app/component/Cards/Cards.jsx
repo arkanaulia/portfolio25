@@ -21,22 +21,22 @@ export default function Cards({ containerRef }) {
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card One",
-      backText: "Details for card 1",
+      backText: "Developer",
     },
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card Two",
-      backText: "Details for card 2",
+      backText: "UI/UX Designer",
     },
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card Three",
-      backText: "Details for card 3",
+      backText: "3D Artist",
     },
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card Four",
-      backText: "Details for card 4",
+      backText: "Product Manager",
     },
   ];
 
@@ -135,7 +135,7 @@ export default function Cards({ containerRef }) {
           frontAlt={card.frontAlt}
           backText={card.backText}
           ref={(el) => (cardRefs.current[index] = el)}
-          onClick={() => handleCardClick(index)}
+          // onClick={() => handleCardClick(index)}
         />
       ))}
       {/* Overlays */}
