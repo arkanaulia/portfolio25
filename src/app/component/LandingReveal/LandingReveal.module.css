@@ -1,6 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/pp-neue-montreal");
 
-.loader {
+.reveal .loader {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,13 +14,12 @@
   transition: opacity 0.1s ease;
 }
 
-.loader-hidden {
+.reveal .loader-hidden {
   pointer-events: none;
   visibility: hidden;
 }
 
-
-.overlay {
+.reveal .overlay {
   position: absolute;
   top: 0;
   width: 100%;
@@ -28,15 +27,16 @@
   display: flex;
 }
 
-.block {
+.reveal .block {
   width: 100%;
   height: 100%;
+  margin-left: -1px;
   background: #303030;
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   transition: clip-path 1s ease-in-out;
 }
 
-.introLogo {
+.reveal .introLogo {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,10 +46,10 @@
   color: #fff;
 }
 
-.word {
+.reveal .word {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
-.word h1 {
+.reveal .word h1 {
   font-size: 2.5rem;
   transform: translateY(120%);
   will-change: transform;
@@ -62,7 +62,7 @@
   transform: translateY(120%);
 }
 
-.divider {
+.reveal .divider {
   position: absolute;
   top: 0;
   left: 50%;
@@ -74,14 +74,14 @@
   will-change: transform;
 }
 
-.spinnerContainer {
+.reveal .spinnerContainer {
   position: absolute;
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.spinner {
+.reveal .spinner {
   width: 50px;
   height: 50px;
   border: 1.4px solid #fff;
@@ -96,7 +96,7 @@
   }
 }
 
-.counter {
+.reveal .counter {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -104,7 +104,7 @@
   z-index: 5;
 }
 
-.count {
+.reveal .count {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -112,14 +112,14 @@
   display: flex;
 }
 
-.digit {
+.reveal .digit {
   flex: 1;
   padding-top: 1rem;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   color: #fff;
 }
 
-.digit h1 {
+.reveal .digit h1 {
   font-size: 15rem;
   font-weight: 400;
   font-family: "PP Editorial Old", "PP Neue Montreal";

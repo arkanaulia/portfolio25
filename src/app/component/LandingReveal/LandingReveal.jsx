@@ -69,45 +69,47 @@ export default function LandingReveal() {
   });
 
   return (
-    <div className={styles.loader} ref={loaderRef}>
-      <div className={styles.overlay}>
-        <div className={styles.block}></div>
-        <div className={styles.block}></div>
-      </div>
-
-      <div className={styles.introLogo}>
-        <div className={styles.word} id="word1">
-          <h1>
-            <span>arkan</span>
-          </h1>
+    <div className={styles.reveal}>
+      <div className={styles.loader} ref={loaderRef}>
+        <div className={styles.overlay}>
+          <div className={styles.block}></div>
+          <div className={styles.block}></div>
         </div>
-        <div className={styles.word} id="word2">
-          <h1 className="font-display">aulia</h1>
-        </div>
-      </div>
 
-      <div className={styles.divider}></div>
-
-      <div className={styles.spinnerContainer}>
-        <div className={styles.spinner}></div>
-      </div>
-
-      <div className={styles.counter}>
-        {[
-          ["0", "0"],
-          ["2", "7"],
-          ["6", "5"],
-          ["9", "8"],
-          ["9", "9"],
-        ].map((digits, i) => (
-          <div className={styles.count} key={i}>
-            {digits.map((d, j) => (
-              <div className={styles.digit} key={j}>
-                <h1>{d}</h1>
-              </div>
-            ))}
+        <div className={styles.introLogo}>
+          <div className={styles.word} id="word1">
+            <h1>
+              <span>arkan</span>
+            </h1>
           </div>
-        ))}
+          <div className={styles.word} id="word2">
+            <h1 className="font-display">aulia</h1>
+          </div>
+        </div>
+
+        <div className={styles.divider}></div>
+
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+
+        <div className={styles.counter}>
+          {[
+            ["0", "0"],
+            ["2", "7"],
+            ["6", "5"],
+            ["9", "8"],
+            ["9", "9"],
+          ].map((digits, i) => (
+            <div className={styles.count} key={i}>
+              {digits.map((d, j) => (
+                <div className={styles.digit} key={j}>
+                  <h1>{d}</h1>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
