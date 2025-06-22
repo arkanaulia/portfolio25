@@ -121,19 +121,19 @@ export default function Works() {
             className="w-full  border-4 border-white/30 h-96 rounded-4xl overflow-hidden workcard"
           >
             {" "}
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/img-5.gif`} alt="" width={800} height={800} />
           </div>
           <div
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/img-6.gif`} alt="" width={800} height={800} />
           </div>
           <div
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/emr.webp`} alt="" width={800} height={800} />
           </div>
         </div>
       </div>
@@ -154,13 +154,13 @@ export default function Works() {
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/img-2.gif`} alt="" width={800} height={800} />
           </div>
           <div
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/img-3.gif`} alt="" width={800} height={800} />
           </div>
         </div>
         <div
@@ -187,19 +187,19 @@ export default function Works() {
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/sicepat.jpg`} alt="" width={800} height={800} />
           </div>
           <div
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/holy.jpg`} alt="" width={800} height={800} />
           </div>
           <div
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/yarsi.jpg`} alt="" width={800} height={800} />
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@ export default function Works() {
             ref={addToWorkcardRefs}
             className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
           >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+            <Image src={`/pm2.jpg`} alt="" fill={true} />
           </div>
         </div>
         <div

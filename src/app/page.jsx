@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <ReactLenis root>
-      {/* <LandingReveal /> */}
+      <LandingReveal />
       <Nav />
       <div className="container">
         <section className="hero">

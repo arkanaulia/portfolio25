@@ -22,21 +22,25 @@ export default function Cards({ containerRef }) {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card One",
       backText: "Developer",
+      backSrc: "/hands1.jpg",
     },
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card Two",
       backText: "UI/UX Designer",
+      backSrc: "/hands2.jpg",
     },
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card Three",
-      backText: "3D Artist",
+      backText: "3D / Motion / Graphics",
+      backSrc: "/hands3.jpg",
     },
     {
       frontSrc: "/cardfront3.jpg",
       frontAlt: "Card Four",
       backText: "Product Manager",
+      backSrc: "/hands4.jpg",
     },
   ];
 
@@ -132,6 +136,7 @@ export default function Cards({ containerRef }) {
           key={index}
           id={`card-${index + 1}`}
           frontSrc={card.frontSrc}
+          backSrc={card.backSrc}
           frontAlt={card.frontAlt}
           backText={card.backText}
           ref={(el) => (cardRefs.current[index] = el)}

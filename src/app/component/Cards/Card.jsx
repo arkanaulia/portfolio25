@@ -18,12 +18,12 @@ const Card = forwardRef(
               />
             </div>
             <div className="flip-card-back">
-              <div className=" w-full flex flex-col ">
+              <div className=" w-full flex flex-col justify-between h-full">
                 <h1 className="self-start">{backText}</h1>
-                <div className="self-center">
+                <div className="self-center -m-4">
                   <Image
                     priority
-                    src={frontSrc}
+                    src={backSrc}
                     width={800}
                     height={800}
                     alt={backText}

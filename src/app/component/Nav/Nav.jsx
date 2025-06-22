@@ -171,18 +171,18 @@ const Nav = () => {
               <Image src="/logo.png" alt="herologo" width={100} height={500} />
             </Link>
           </div>
-          <div className="justify-center text-6xl w-80">
+          <div className="justify-center text-6xl w-80 gap-4 flex flex-col">
             <div className="link hover:font-bold ">
-              <Link href="/">Projects</Link>
+              <Link href="/">Home</Link>
             </div>
             <div className="link hover:font-bold">
-              <Link href="/">Expertise</Link>
+              <Link href="/">About</Link>
             </div>
             <div className="link hover:font-bold">
-              <Link href="/">Agency</Link>
+              <Link href="/">Works</Link>
             </div>
             <div className="link hover:font-bold">
-              <Link href="/">Contact</Link>
+              <Link href="/">Experiences & Awards</Link>
             </div>
           </div>
           {/* <div className="video-wrapper">
@@ -195,13 +195,12 @@ const Nav = () => {
               <p>Arkan Aulia Farhan</p>
               <p>UX Designer</p>
               <p>Frontend Coder</p>
-              <p>3D Artist</p>
+              <p>3D / Motion / Graphics</p>
             </div>
             <div className="sub-col">
               <p>Instagram</p>
               <p>LinkedIn</p>
               <p>Twitter</p>
-              <p>Facebook</p>
             </div>
           </div>
 
