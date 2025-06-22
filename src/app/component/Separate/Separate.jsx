@@ -102,26 +102,25 @@ export default function Separate() {
   };
 
   return (
-    <section className="main">
-      <div className="main-content">
-        <div className=" h-96 w-4xl absolute -mt-64 z-50">
+    <section className="main -mt-[30vh] md:-mt-0 px-4 py-8 md:px-12 lg:px-24">
+      <div className="main-content relative max-w-6xl mx-auto">
+        <div className="h-48  overflow-hidden md:h-96 md:w-[70%] absolute -mt-24 md:-mt-64 z-50">
           <Aqua />
         </div>
-        <div className="copy text-sm text-neutral-50">
+        <div className="copy text-sm md:text-xl text-neutral-50">
           <div className="line">
-            <p>a passionate 3D designer with a focus on UI/UX,</p>
+            <h1>a passionate 3D designer with a focus on UI/UX,</h1>
           </div>
           <div className="line">
-            <p> studying Information Technology and</p>
+            <h1>studying Information Technology and</h1>
           </div>
           <div className="line">
-            <p>building a career in IT Business Analyst</p>
+            <h1>building a career in IT Business Analyst</h1>
           </div>
         </div>
-       
       </div>
 
-      {generateRows()}
+      <div className="space-y-8 md:space-y-12">{generateRows()}</div>
     </section>
   );
 }

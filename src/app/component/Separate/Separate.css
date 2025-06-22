@@ -28,7 +28,7 @@ Image {
   .cardtwo {
     position: relative;
     width: 30%;
-    height: 280px;
+    height: 240px;
     border-radius: 0.75em;
     overflow: hidden;
     will-change: transform;
@@ -55,7 +55,6 @@ Image {
   
   .line {
     position: relative;
-    margin: 0.5em 0;
     width: max-content;
     height: 34px;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
@@ -83,6 +82,6 @@ Image {
   @media (max-width: 900px) {
     .cardtwo {
       width: 50%;
-      height: 240px;
+      height: 90px;
     }
   }

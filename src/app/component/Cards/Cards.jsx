@@ -47,8 +47,37 @@ export default function Cards({ containerRef }) {
   useGSAP(() => {
     const cards = cardRefs.current;
     const totalScrollHeight = window.innerHeight * 3;
-    const positions = [14, 38, 62, 86];
-    const rotations = [-15, -7.5, 7.5, 15];
+    let positions = [14, 38, 62, 86];
+    // Responsive positions and rotations
+    let rotations;
+    if (window.innerWidth < 768) {
+      // Mobile/tablet: 2x2 grid, smaller cards
+      positions = [30, 70, 30, 70];
+      rotations = [0, 0, 0, 0];
+      cards.forEach((card, idx) => {
+        if (card) {
+          const row = Math.floor(idx / 2);
+          const col = idx % 2;
+          gsap.set(card, {
+            top: `${30 + row * 30}%`,
+            left: `${30 + col * 40}%`,
+            xPercent: -50,
+            yPercent: -50,
+            scale: 0.6,
+            rotate: 0,
+          });
+        }
+      });
+    } else {
+      // Desktop: original spread
+      positions = [14, 38, 62, 86];
+      rotations = [-15, -7.5, 7.5, 15];
+      cards.forEach((card) => {
+        if (card) {
+          gsap.set(card, { scale: 1 });
+        }
+      });
+    }
 
     // Use document.querySelector if containerRef is not provided
     const cardsEl =
@@ -125,10 +154,10 @@ export default function Cards({ containerRef }) {
     <section className="cards2 carding">
       {" "}
       {/* added carding class here */}
-      <h1 className="text-orange-500 font-display text-7xl absolute inset-0 flex mt-32 justify-center blur-xs">
+      <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-16 md:mt-32 justify-center blur-[2px] md:blur-xs">
         Choose My Version.
       </h1>
-      <p className="text-white font-light font-sans text-xl absolute inset-0 flex mt-36 justify-center">
+      <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-16 justify-center">
         Whatever you choose, it’s still me.
       </p>
       {cardData.map((card, index) => (

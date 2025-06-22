@@ -78,7 +78,7 @@ export default function Aqua() {
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
       <Model position={[0, -0.25, 0]} />
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <Environment
         files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/blue_photo_studio_1k.hdr"
         resolution={512}
@@ -115,7 +115,7 @@ export default function Aqua() {
         </group>
       </Environment>
       <EffectComposer disableNormalPass>
-        <Bloom mipmapBlur luminanceThreshold={1} intensity={2} />
+        <Bloom mipmapBlur luminanceThreshold={5} intensity={0.5} />
         <BrightnessContrast brightness={0} contrast={0.1} />
         <HueSaturation hue={0} saturation={-0.25} />
         <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />

@@ -30,7 +30,6 @@ export default function Works() {
   };
 
   useEffect(() => {
-    // Pin the titles as before
     gsap.to(".titles", {
       scrollTrigger: {
         trigger: ".titles",
@@ -42,7 +41,6 @@ export default function Works() {
       },
     });
 
-    // Pin each listsec as before
     [1, 2, 3, 4].forEach((i) => {
       gsap.to(`.listsec${i}`, {
         scrollTrigger: {
@@ -56,22 +54,17 @@ export default function Works() {
       });
     });
 
-    // For each parlistcon, stack its workcards
     parlistconRefs.current.forEach((parlistcon, idx) => {
-      // Get all workcards inside this parlistcon
       const cards = Array.from(parlistcon.querySelectorAll(".workcard"));
       cards.forEach((card, i) => {
-        // Calculate start position: 30% + (i * 5%)
         const startPercent = 30 + i * 5;
-
-        // If this is the last workcard in the parlistcon, fade out the parlistcon as it scrolls out
         if (i === cards.length - 1) {
           gsap.to(parlistcon, {
             opacity: 0,
             scrollTrigger: {
               trigger: card,
-              start: `top ${startPercent - 5}%`, // start fading after pin ends
-              end: "bottom 40%", // fully faded when card leaves viewport
+              start: `top ${startPercent - 5}%`,
+              end: "bottom 40%",
               scrub: true,
             },
           });
@@ -84,174 +77,117 @@ export default function Works() {
             endTrigger: parlistconRefs.current[idx + 1] || parlistcon,
             end: parlistconRefs.current[idx + 1] ? "top 70%" : "bottom bottom",
             scrub: true,
-            // markers: true, // Uncomment for debugging
           },
         });
       });
     });
   }, []);
 
+  // Detect if desktop
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
+
   return (
-    <div className="con ">
-      <div className=" titles absolute w-full">
-        <h1 className="text-orange-500 font-display text-7xl absolute inset-0 flex mt-32 justify-center blur-xs">
+    <div className="con relative">
+      <div className="titles absolute w-full">
+        <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-32 md:mt-32 justify-center blur-[2px] md:blur-xs">
           Selected Works
         </h1>
-        <p className="text-white font-light font-sans text-xl absolute inset-0 flex mt-36 justify-center">
+        <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-32 justify-center">
           Not that bad. I guess.
         </p>
       </div>
 
-      <div className="w-full h-[40vh]"></div>
+      <div className="w-full h-[30vh] md:h-[40vh]"></div>
 
-      {/* First Section: Dev Projects */}
-      <div
-        ref={addToParlistconRefs}
-        className="w-full flex flex-row justify-between  px-40 parlistcon1"
-      >
+      {/* Section Template */}
+      {[
+        {
+          title: "Dev Projects",
+          classSuffix: 1,
+          images: ["/img-5.gif", "/img-6.gif", "/emr.webp"],
+        },
+        {
+          title: "UX Projects",
+          classSuffix: 2,
+          images: ["/img-1.gif", "/img-2.gif", "/img-3.gif"],
+        },
+        {
+          title: "3D Projects",
+          classSuffix: 3,
+          images: ["/sicepat.jpg", "/holy.jpg", "/yarsi.jpg"],
+        },
+        {
+          title: "PM and Analyst",
+          classSuffix: 4,
+          images: ["/pm2.jpg"],
+        },
+      ].map(({ title, classSuffix, images }, i) => (
         <div
-          ref={addToListsecRefs}
-          className="listsec1 w-1/2 flex justify-center items-center h-96"
+          key={classSuffix}
+          ref={addToParlistconRefs}
+          className={`w-full flex flex-col md:flex-row justify-between mt-10 px-4 md:px-20 parlistcon${classSuffix}`}
         >
-          <h1 className="font-bold text-6xl text-white">Dev Projects</h1>
-        </div>
-        <div className="w-1/2 flex flex-col gap-10">
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl overflow-hidden workcard"
-          >
-            {" "}
-            <Image src={`/img-5.gif`} alt="" width={800} height={800} />
-          </div>
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/img-6.gif`} alt="" width={800} height={800} />
-          </div>
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/emr.webp`} alt="" width={800} height={800} />
-          </div>
-        </div>
-      </div>
+          {/* Always show on mobile, conditional on desktop */}
+          {(isDesktop ? classSuffix % 2 === 1 || classSuffix === 3 : true) && (
+            <div
+              ref={addToListsecRefs}
+              className={`listsec${classSuffix} w-full md:w-1/2 flex justify-center items-center h-32 md:h-96 mb-4 md:mb-0`}
+            >
+              <h1 className="font-bold text-3xl md:text-6xl text-white text-center">
+                {title}
+              </h1>
+            </div>
+          )}
 
-      {/* Second Section: UX Projects */}
-      <div
-        ref={addToParlistconRefs}
-        className="w-full flex flex-row justify-between mt-10 px-40 parlistcon2"
-      >
-        <div className="w-1/2 flex flex-col gap-10">
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/img-1.gif`} alt="" width={800} height={800} />
+          <div className="w-full md:w-1/2 flex flex-col gap-6 md:gap-10">
+            {images.map((src, idx) => (
+              <div
+                key={idx}
+                ref={addToWorkcardRefs}
+                className="w-full border-4 border-white/30 h-72 md:h-96 rounded-3xl workcard overflow-hidden"
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  width={800}
+                  height={800}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            ))}
           </div>
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/img-2.gif`} alt="" width={800} height={800} />
-          </div>
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/img-3.gif`} alt="" width={800} height={800} />
-          </div>
-        </div>
-        <div
-          ref={addToListsecRefs}
-          className="listsec2 w-1/2 flex justify-center items-center h-96"
-        >
-          <h1 className="font-bold text-6xl text-white">UX Projects</h1>
-        </div>
-      </div>
 
-      {/* Third Section: 3D Projects */}
-      <div
-        ref={addToParlistconRefs}
-        className="w-full flex flex-row justify-between mt-10 px-40 parlistcon3"
-      >
-        <div
-          ref={addToListsecRefs}
-          className="listsec3 w-1/2 flex justify-center items-center h-96"
-        >
-          <h1 className="font-bold text-6xl text-white">3D Projects</h1>
+          {/* Only show on desktop and for even classSuffix except 3 */}
+          {isDesktop && classSuffix % 2 === 0 && classSuffix !== 3 && (
+            <div
+              ref={addToListsecRefs}
+              className={`listsec${classSuffix} w-full md:w-1/2 flex justify-center items-center h-32 md:h-96 mt-4 md:mt-0`}
+            >
+              <h1 className="font-bold text-3xl md:text-6xl text-white text-center">
+                {title}
+              </h1>
+            </div>
+          )}
         </div>
-        <div className="w-1/2 flex flex-col gap-10">
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/sicepat.jpg`} alt="" width={800} height={800} />
-          </div>
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/holy.jpg`} alt="" width={800} height={800} />
-          </div>
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/yarsi.jpg`} alt="" width={800} height={800} />
-          </div>
-        </div>
-      </div>
+      ))}
 
-      {/* Fourth Section: PM and Analyst */}
-      <div
-        ref={addToParlistconRefs}
-        className="w-full flex flex-row justify-between mt-10 px-40 parlistcon4"
-      >
-        <div className="w-1/2 flex flex-col gap-10">
-          <div
-            ref={addToWorkcardRefs}
-            className="w-full  border-4 border-white/30 h-96 rounded-4xl workcard overflow-hidden"
-          >
-            <Image src={`/pm2.jpg`} alt="" fill={true} />
-          </div>
-        </div>
-        <div
-          ref={addToListsecRefs}
-          className="listsec4 w-1/2 flex justify-center items-center h-96"
-        >
-          <h1 className="font-bold text-6xl text-white">PM and Analyst</h1>
-        </div>
-      </div>
-
-      <div className=" mt-[40vh] absolute w-full">
-        <h1 className="text-orange-500 font-display text-7xl absolute inset-0 flex justify-center blur-xs">
-          Grab some Coffee?
+      <div className="mt-[30vh] md:mt-[40vh] w-full relative">
+        <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex -mt-14 md:mt-0 justify-center blur-[2px] md:blur-xs">
+          Grab some Coffee
         </h1>
-        <p className="text-white font-light font-sans text-xl absolute inset-0 flex mt-6 justify-center">
+        <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-4 -mt-12 justify-center">
           Contact Me.
         </p>
-
-        <div className="absolute inset-0 flex mt-20 justify-center gap-8 z-20">
-          <a
-            href=""
-            className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-8 py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
-          >
-            LinkedIn
-          </a>
-          <a
-            href=""
-            className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-8 py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
-          >
-            Email
-          </a>
-          <a
-            href=""
-            className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-8 py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
-          >
-            Instagram
-          </a>
+        <div className="flex justify-center gap-4 md:gap-8 mt-8 z-20">
+          {["LinkedIn", "Email", "Instagram"].map((label, idx) => (
+            <a
+              key={idx}
+              href=""
+              className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-6 py-3 md:px-8 md:py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+            >
+              {label}
+            </a>
+          ))}
         </div>
       </div>
     </div>

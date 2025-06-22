@@ -67,9 +67,9 @@ export default function Home() {
 
   return (
     <ReactLenis root>
-      <LandingReveal />
+      {/* <LandingReveal /> */}
       <Nav />
-      <div className="container">
+      <div className="container max-w-[100svw] overflow-x-hidden">
         <section className="hero">
           <div className="sticky top-0 left-0 w-full z-0 bg-[#0a0a0a] h-[35vh]">
             <div className="NAME w-full h-full bg-[url(/hero1.png)] p-5 bg-cover bg-center flex items-center justify-center">
@@ -117,11 +117,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="z-20">
+        <section className="z-20 ">
           <Separate />
         </section>
 
-        <section className="z-20">
+        <section className="z-20 ">
           <Cards containerRef={container} />
         </section>
 
