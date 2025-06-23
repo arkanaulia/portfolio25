@@ -65,12 +65,10 @@ export default function Home() {
     });
   }, []);
 
-  // Enable Lenis smooth scroll on touch devices
- 
 
   return (
     <ReactLenis root options={{ gestureOrientation: "both", syncTouch: true }}>
-      {/* <LandingReveal /> */}
+      <LandingReveal />
       <Nav />
       <div className="container max-w-[100svw] overflow-x-hidden">
         <section className="hero">
