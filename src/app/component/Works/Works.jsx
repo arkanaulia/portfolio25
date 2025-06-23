@@ -178,12 +178,12 @@ export default function Works() {
         <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:-mt-16 -mt-12 justify-center">
           Contact Me.
         </p>
-        <div className="flex justify-center gap-4 md:gap-8 mt-8 z-20">
+        <div className="flex justify-center gap-3 md:gap-8 mt-8 z-20">
           {["LinkedIn", "Email", "Instagram"].map((label, idx) => (
             <a
               key={idx}
               href=""
-              className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-6 py-3 md:px-8 md:py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+              className="backdrop-blur-md h-max bg-white/10 border border-white/30 rounded-xl px-4 py-3 md:px-8 md:py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
             >
               {label}
             </a>
