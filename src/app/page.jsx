@@ -7,13 +7,13 @@ import { FaDroplet } from "react-icons/fa6";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-import Nav from "./component/Nav/Nav";
-import HoverLogo from "./component/HoverLogo";
-import ExplosionContainer from "./component/ExplosionContainer";
-import Cards from "./component/Cards/Cards";
-import Separate from "./component/Separate/Separate";
-import LandingReveal from "./component/LandingReveal/LandingReveal";
-import Works from "./component/Works/Works";
+import Nav from "../_component/Nav/Nav";
+import HoverLogo from "../_component/HoverLogo";
+import ExplosionContainer from "../_component/ExplosionContainer";
+import Cards from "../_component/Cards/Cards";
+import Separate from "../_component/Separate/Separate";
+import LandingReveal from "../_component/LandingReveal/LandingReveal";
+import Works from "../_component/Works/Works";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,9 +68,9 @@ export default function Home() {
 
   return (
     <ReactLenis root options={{ gestureOrientation: "both", syncTouch: true }}>
-      <LandingReveal />
+      {/* <LandingReveal /> */}
       <Nav />
-      <div className="container max-w-[100svw] overflow-x-hidden">
+      <div className="container max-w-[100svw] overflow-hidden">
         <section className="hero">
           <div className="sticky top-0 left-0 w-full z-0 bg-[#0a0a0a] h-[35vh]">
             <div className="NAME w-full h-full bg-[url(/hero1.png)] p-5 bg-cover bg-center flex items-center justify-center">

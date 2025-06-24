@@ -90,6 +90,7 @@ export default function Separate() {
               alt=""
               width={800}
               height={800}
+              className="object-cover"
             />
           </div>
           <div className="cardtwo card-right">

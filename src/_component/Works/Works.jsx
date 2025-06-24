@@ -28,7 +28,6 @@ export default function Works() {
       parlistconRefs.current.push(el);
     }
   };
-
   useEffect(() => {
     gsap.to(".titles", {
       scrollTrigger: {
@@ -58,7 +57,8 @@ export default function Works() {
       const cards = Array.from(parlistcon.querySelectorAll(".workcard"));
       cards.forEach((card, i) => {
         const startPercent = 30 + i * 5;
-        if (i === cards.length - 1) {
+        // Only apply opacity: 0 to parlistcon if it's not .parlistcon4
+        if (i === cards.length - 1 && idx !== 3) {
           gsap.to(parlistcon, {
             opacity: 0,
             scrollTrigger: {
@@ -82,6 +82,19 @@ export default function Works() {
       });
     });
   }, []);
+
+  useEffect(() => {
+    gsap.to(".coffee", {
+      opacity: 1,
+      scrollTrigger: {
+        trigger: ".coffee",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: true,
+      },
+    });
+  }, []);
+  
 
   // Detect if desktop
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
@@ -170,10 +183,17 @@ export default function Works() {
           )}
         </div>
       ))}
-
-      <div className="mt-[30vh] md:mt-[40vh] w-full relative">
+      <div className="relative top-0 left-0 w-full flex justify-center items-center mt-16">
+        <a
+          href=""
+          className="backdrop-blur-md h-max w-56 text-center bg-white/10 border border-white/30 rounded-xl px-4 py-3 md:px-8 md:py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+        >
+          See More Works
+        </a>
+      </div>
+      <div className="mt-[30vh] md:mt-[60vh] w-full relative coffee opacity-0">
         <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex -mt-14 md:-mt-20 justify-center blur-[2px] md:blur-xs">
-          Grab some Coffee
+          Grab some Coffee?
         </h1>
         <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:-mt-16 -mt-12 justify-center">
           Contact Me.

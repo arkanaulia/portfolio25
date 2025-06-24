@@ -1,8 +1,4 @@
-Image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+
 
   .main {
     width: 100vw;
@@ -28,7 +24,7 @@ Image {
   .cardtwo {
     position: relative;
     width: 30%;
-    height: 240px;
+    height: 220px;
     border-radius: 0.75em;
     overflow: hidden;
     will-change: transform;
