@@ -99,7 +99,33 @@ export default function Cards({ containerRef }) {
 
     cards.forEach((card, index) => {
       if (!card) return;
+      const backsEl = card.querySelector(".flip-card-back");
+      if (backsEl) {
+        // Set default state (mouseleave) initially
+        gsap.set(card, {
+          scale: window.innerWidth < 768 ? 0.6 : 1,
+          filter: "grayscale(1)",
+        });
 
+        backsEl.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            scale: 1.12,
+            duration: 0.4,
+            filter: "grayscale(0)",
+            ease: "bounce.out",
+          });
+        });
+
+        backsEl.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: window.innerWidth < 768 ? 0.6 : 1,
+            duration: 0.3,
+            filter: "grayscale(1)",
+            ease: "power2.out",
+          });
+        });
+      }
+     
       gsap.to(card, {
         left: `${positions[index]}%`,
         rotation: `${rotations[index]}`,
@@ -154,13 +180,12 @@ export default function Cards({ containerRef }) {
     <section className="cards2 carding">
       {" "}
       {/* added carding class here */}
-      <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-10 md:mt-32 justify-center blur-[2px] md:blur-xs">
+      <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-10 md:mt-20 justify-center blur-[2px] md:blur-xs">
         Choose My Version.
       </h1>
-      <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-36 mt-10 justify-center">
+      <p className="text-white font-light font-sans text-md md:text-xl absolute inset-0 flex md:mt-24 mt-10 justify-center">
         Whatever you choose, it’s still me.
       </p>
-      
       {cardData.map((card, index) => (
         <Card
           key={index}
@@ -170,7 +195,8 @@ export default function Cards({ containerRef }) {
           frontAlt={card.frontAlt}
           backText={card.backText}
           ref={(el) => (cardRefs.current[index] = el)}
-          // onClick={() => handleCardClick(index)}
+
+          onClick={() => handleCardClick(index)}
         />
       ))}
       {/* Overlays */}
@@ -178,6 +204,15 @@ export default function Cards({ containerRef }) {
       {activeCardIndex === 1 && <OverlayTwo onClose={closeOverlay} />}
       {activeCardIndex === 2 && <OverlayThree onClose={closeOverlay} />}
       {activeCardIndex === 3 && <OverlayFour onClose={closeOverlay} />}
+    
+    <div className="absolute bottom-30 w-full flex justify-center items-center mt-16">
+        <a
+          href=""
+          className="backdrop-blur-md h-max w-56 text-center bg-white/10 border border-white/30 rounded-full px-4 py-3 md:px-8 md:py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"
+        >
+          See More Works
+        </a>
+      </div>
     </section>
   );
 }

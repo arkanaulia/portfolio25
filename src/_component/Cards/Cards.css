@@ -6,6 +6,7 @@
   width: 240px;
   height: 350px;
   perspective: 1000px;
+  filter: grayscale(100%);
 }
 
 .carding .card p {

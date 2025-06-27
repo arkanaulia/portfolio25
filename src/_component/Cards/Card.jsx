@@ -5,7 +5,7 @@ import Image from "next/image";
 const Card = forwardRef(
   ({ id, frontSrc, frontAlt, backText, onClick, backSrc }, ref) => {
     return (
-      <div className="card" id={id} ref={ref} onClick={onClick}>
+      <div className="card cursor-pointer" id={id} ref={ref} onClick={onClick}>
         <div className="card-wrapper">
           <div className="flip-card-inner">
             <div className="flip-card-front">
