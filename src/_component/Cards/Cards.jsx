@@ -13,9 +13,12 @@ import "./Cards.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Cards({ containerRef }) {
+export default function Cards({
+  containerRef,
+  activeCardIndex,
+  setActiveCardIndex,
+}) {
   const cardRefs = useRef([]);
-  const [activeCardIndex, setActiveCardIndex] = useState(null);
 
   const cardData = [
     {
@@ -125,7 +128,7 @@ export default function Cards({ containerRef }) {
           });
         });
       }
-     
+
       gsap.to(card, {
         left: `${positions[index]}%`,
         rotation: `${rotations[index]}`,
@@ -173,8 +176,10 @@ export default function Cards({ containerRef }) {
     }, 100);
   }, [containerRef]);
 
-  const handleCardClick = (index) => setActiveCardIndex(index);
-  const closeOverlay = () => setActiveCardIndex(null);
+  const handleCardClick = (index) => {
+    console.log("Card clicked:", index);
+    setActiveCardIndex(index);
+  };
 
   return (
     <section className="cards2 carding">
@@ -195,17 +200,10 @@ export default function Cards({ containerRef }) {
           frontAlt={card.frontAlt}
           backText={card.backText}
           ref={(el) => (cardRefs.current[index] = el)}
-
           onClick={() => handleCardClick(index)}
         />
       ))}
-      {/* Overlays */}
-      {activeCardIndex === 0 && <OverlayOne onClose={closeOverlay} />}
-      {activeCardIndex === 1 && <OverlayTwo onClose={closeOverlay} />}
-      {activeCardIndex === 2 && <OverlayThree onClose={closeOverlay} />}
-      {activeCardIndex === 3 && <OverlayFour onClose={closeOverlay} />}
-    
-    <div className="absolute bottom-30 w-full flex justify-center items-center mt-16">
+      <div className="absolute bottom-30 w-full flex justify-center items-center mt-16">
         <a
           href=""
           className="backdrop-blur-md h-max w-56 text-center bg-white/10 border border-white/30 rounded-full px-4 py-3 md:px-8 md:py-4 text-white font-semibold shadow-lg transition hover:bg-white/20 hover:border-white/50"

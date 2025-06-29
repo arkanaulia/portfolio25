@@ -28,79 +28,78 @@ export default function Works() {
       parlistconRefs.current.push(el);
     }
   };
-  useEffect(() => {
-    gsap.to(".titles", {
-      scrollTrigger: {
-        trigger: ".titles",
-        pin: true,
-        start: "top top",
-        endTrigger: ".parlistcon4",
-        end: "top 30%",
-        scrub: true,
-      },
-    });
+  // useEffect(() => {
+  //   gsap.to(".titles", {
+  //     scrollTrigger: {
+  //       trigger: ".titles",
+  //       pin: true,
+  //       start: "top top",
+  //       endTrigger: ".parlistcon4",
+  //       end: "top 30%",
+  //       scrub: true,
+  //     },
+  //   });
 
-    [1, 2, 3, 4].forEach((i) => {
-      gsap.to(`.listsec${i}`, {
-        scrollTrigger: {
-          trigger: `.listsec${i}`,
-          pin: true,
-          start: "top 30%",
-          endTrigger: i === 4 ? ".parlistcon4" : `.parlistcon${i + 1}`,
-          end: i === 4 ? "bottom bottom" : "top 70%",
-          scrub: true,
-        },
-      });
-    });
+  //   [1, 2, 3, 4].forEach((i) => {
+  //     gsap.to(`.listsec${i}`, {
+  //       scrollTrigger: {
+  //         trigger: `.listsec${i}`,
+  //         pin: true,
+  //         start: "top 30%",
+  //         endTrigger: i === 4 ? ".parlistcon4" : `.parlistcon${i + 1}`,
+  //         end: i === 4 ? "bottom bottom" : "top 70%",
+  //         scrub: true,
+  //       },
+  //     });
+  //   });
 
-    parlistconRefs.current.forEach((parlistcon, idx) => {
-      const cards = Array.from(parlistcon.querySelectorAll(".workcard"));
-      cards.forEach((card, i) => {
-        const startPercent = 30 + i * 5;
-        // Only apply opacity: 0 to parlistcon if it's not .parlistcon4
-        if (i === cards.length - 1 && idx !== 3) {
-          gsap.to(parlistcon, {
-            opacity: 0,
-            scrollTrigger: {
-              trigger: card,
-              start: `top ${startPercent - 5}%`,
-              end: "bottom 40%",
-              scrub: true,
-            },
-          });
-        }
-        gsap.to(card, {
-          scrollTrigger: {
-            trigger: card,
-            pin: true,
-            start: `top ${startPercent - 4}%`,
-            endTrigger: parlistconRefs.current[idx + 1] || parlistcon,
-            end: parlistconRefs.current[idx + 1] ? "top 70%" : "bottom bottom",
-            scrub: true,
-          },
-        });
-      });
-    });
-  }, []);
+  //   parlistconRefs.current.forEach((parlistcon, idx) => {
+  //     const cards = Array.from(parlistcon.querySelectorAll(".workcard"));
+  //     cards.forEach((card, i) => {
+  //       const startPercent = 30 + i * 5;
+  //       // Only apply opacity: 0 to parlistcon if it's not .parlistcon4
+  //       if (i === cards.length - 1 && idx !== 3) {
+  //         gsap.to(parlistcon, {
+  //           opacity: 0,
+  //           scrollTrigger: {
+  //             trigger: card,
+  //             start: `top ${startPercent - 5}%`,
+  //             end: "bottom 40%",
+  //             scrub: true,
+  //           },
+  //         });
+  //       }
+  //       gsap.to(card, {
+  //         scrollTrigger: {
+  //           trigger: card,
+  //           pin: true,
+  //           start: `top ${startPercent - 4}%`,
+  //           endTrigger: parlistconRefs.current[idx + 1] || parlistcon,
+  //           end: parlistconRefs.current[idx + 1] ? "top 70%" : "bottom bottom",
+  //           scrub: true,
+  //         },
+  //       });
+  //     });
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    gsap.to(".coffee", {
-      opacity: 1,
-      scrollTrigger: {
-        trigger: ".coffee",
-        start: "top 80%",
-        end: "top 50%",
-        scrub: true,
-      },
-    });
-  }, []);
-  
+  // useEffect(() => {
+  //   gsap.to(".coffee", {
+  //     opacity: 1,
+  //     scrollTrigger: {
+  //       trigger: ".coffee",
+  //       start: "top 80%",
+  //       end: "top 50%",
+  //       scrub: true,
+  //     },
+  //   });
+  // }, []);
 
   // Detect if desktop
-  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
+  const isDesktop = false;
 
   return (
-    <div className="con relative">
+    <div className="con relative ">
       <div className="titles absolute w-full">
         <h1 className="text-orange-500 font-display text-center text-4xl md:text-7xl absolute inset-0 flex mt-20 md:mt-32 justify-center blur-[2px] md:blur-xs">
           Selected Works
@@ -138,21 +137,18 @@ export default function Works() {
         <div
           key={classSuffix}
           ref={addToParlistconRefs}
-          className={`w-full flex flex-col md:flex-row justify-between mt-10 px-4 md:px-20 parlistcon${classSuffix}`}
+          className={`w-full flex flex-col justify-between mt-10 px-4 md:px-20 parlistcon${classSuffix}`}
         >
-          {/* Always show on mobile, conditional on desktop */}
-          {(isDesktop ? classSuffix % 2 === 1 || classSuffix === 3 : true) && (
-            <div
-              ref={addToListsecRefs}
-              className={`listsec${classSuffix} w-full md:w-1/2 flex justify-center items-center h-32 md:h-96 mb-4 md:mb-0`}
-            >
-              <h1 className="font-bold text-3xl md:text-6xl text-white text-center">
-                {title}
-              </h1>
-            </div>
-          )}
+          <div
+            ref={addToListsecRefs}
+            className={`listsec${classSuffix} w-full flex justify-center items-center h-32 md:h-96 mb-4 md:mb-0`}
+          >
+            <h1 className="font-bold text-3xl md:text-6xl text-white text-center">
+              {title}
+            </h1>
+          </div>
 
-          <div className="w-full md:w-1/2 flex flex-col gap-6 md:gap-10">
+          <div className="w-full flex flex-col gap-6 md:gap-10">
             {images.map((src, idx) => (
               <div
                 key={idx}
@@ -174,7 +170,7 @@ export default function Works() {
           {isDesktop && classSuffix % 2 === 0 && classSuffix !== 3 && (
             <div
               ref={addToListsecRefs}
-              className={`listsec${classSuffix} w-full md:w-1/2 flex justify-center items-center h-32 md:h-96 mt-4 md:mt-0`}
+              className={`listsec${classSuffix} w-full flex justify-center items-center h-32 md:h-96 mt-4 md:mt-0`}
             >
               <h1 className="font-bold text-3xl md:text-6xl text-white text-center">
                 {title}
