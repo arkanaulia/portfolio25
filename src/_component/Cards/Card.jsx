@@ -10,10 +10,10 @@ const Card = forwardRef(
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <Image
-                priority
                 src={frontSrc}
                 width={800}
                 height={800}
+                sizes="(max-width: 768px) 144px, 240px"
                 alt={frontAlt}
               />
             </div>
@@ -22,10 +22,10 @@ const Card = forwardRef(
                 <h1 className="self-start">{backText}</h1>
                 <div className="self-center -m-4">
                   <Image
-                    priority
                     src={backSrc}
                     width={800}
                     height={800}
+                    sizes="(max-width: 768px) 144px, 240px"
                     alt={backText}
                   />
                 </div>

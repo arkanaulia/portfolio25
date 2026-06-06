@@ -1,5 +1,6 @@
 "use client";
 import * as THREE from "three";
+import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Environment,
@@ -16,7 +17,6 @@ import {
   ToneMapping,
 } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
-import { useRef } from "react";
 
 function Model(props) {
   const groupRef = useRef();
@@ -35,7 +35,7 @@ function Model(props) {
         <MeshTransmissionMaterial
           backside
           backsideThickness={1}
-          samples={16}
+          samples={8}
           thickness={0.2}
           anisotropicBlur={0.1}
           iridescence={1}
@@ -46,8 +46,8 @@ function Model(props) {
         />
         <mesh geometry={nodes.Sphere.geometry}>
           <MeshTransmissionMaterial
-            samples={6}
-            resolution={512}
+            samples={4}
+            resolution={256}
             thickness={-1}
             anisotropy={0.25}
           />
@@ -66,6 +66,17 @@ function Model(props) {
 }
 
 export default function Aqua() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!mounted) {
+    return <div />;
+  }
+
   return (
     <Canvas
       gl={{ antialias: false }}
@@ -80,8 +91,8 @@ export default function Aqua() {
       <Model position={[0, -0.25, 0]} />
       {/* <OrbitControls /> */}
       <Environment
-        files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/blue_photo_studio_1k.hdr"
-        resolution={512}
+        files="/blue_photo_studio_1k.hdr"
+        resolution={256}
       >
         <group rotation={[0, 0, 1]}>
           <Lightformer

@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { useRef, useState, useEffect } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment, Detailed, useProgress } from "@react-three/drei";
+import { useGLTF, Environment, Detailed } from "@react-three/drei";
 import {
   EffectComposer,
   DepthOfField,
@@ -44,18 +44,6 @@ function IridescentMaterial() {
       envMapIntensity={2}
     />
   );
-}
-
-function LoaderSignal() {
-  const { progress } = useProgress();
-
-  useEffect(() => {
-    if (progress === 100) {
-      window.dispatchEvent(new Event("r3f-ready"));
-    }
-  }, [progress]);
-
-  return null;
 }
 
 // Banana component
@@ -206,8 +194,8 @@ function SceneContent({ speed, count, depth, easing, hovered }) {
         <DepthOfField
           target={[0, 0, 70]}
           focalLength={0.4}
-          bokehScale={8}
-          height={700}
+          bokehScale={4}
+          height={400}
         />
         <ToneMapping />
       </EffectComposer>
@@ -218,14 +206,26 @@ function SceneContent({ speed, count, depth, easing, hovered }) {
 // Main component
 export default function HoverLogo({
   speed = 1,
-  count = 80,
+  count = 40,
   depth = 80,
   easing = (x) => Math.sqrt(1 - Math.pow(x - 1, 2)),
 }) {
   const [hovered, setHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="h-[100vh] w-[100vw] rounded-3xl overflow-hidden" style={{ backgroundColor: "#212121" }} />
+    );
+  }
 
   return (
-    <div className="h-[100vh] w-[100vw] rounded-3xl overflow-hidden">
+    <div className="h-[100vh] w-[100vw] rounded-3xl overflow-hidden" style={{ backgroundColor: "#212121" }}>
       <Canvas
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
@@ -241,7 +241,6 @@ export default function HoverLogo({
           hovered={hovered}
         />
       </Canvas>
-      <LoaderSignal />
     </div>
   );
 }

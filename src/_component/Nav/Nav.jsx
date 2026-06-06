@@ -163,7 +163,7 @@ const Nav = () => {
   return (
     <div className="">
       <MenuBtn isOpen={isOpen} toggleMenu={toggleMenu} />
-      <div className="menu z-30 trail-container" ref={menuRef}>
+      <div className="menu z-30" ref={menuRef}>
         <ImageTrail images={images} />
         <div className="col col-1">
           <div className="menu-logo">
@@ -176,11 +176,11 @@ const Nav = () => {
               <Link href="/">Home</Link>
             </div>
             <div className="link hover:font-bold">
-              <Link href="/">About</Link>
+              <Link href="/about">About</Link>
             </div>
-            <div className="link hover:font-bold">
-              <Link href="/">Works</Link>
-            </div>
+             <div className="link hover:font-bold">
+               <Link href="/works">Works</Link>
+             </div>
             <div className="link hover:font-bold">
               <Link href="/">Experiences & Awards</Link>
             </div>

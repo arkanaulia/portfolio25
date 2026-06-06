@@ -5,18 +5,17 @@ const OverlayTwo = ({ onClose }) => {
   const overlayRef = useRef(null);
 
   useEffect(() => {
+    const el = overlayRef.current;
+    if (!el) return;
+
     gsap.fromTo(
-      overlayRef.current,
+      el,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }
     );
+
     return () => {
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.4,
-        ease: "power3.in",
-      });
+      gsap.killTweensOf(el);
     };
   }, []);
 

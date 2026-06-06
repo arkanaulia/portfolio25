@@ -2,37 +2,48 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useGSAP } from "@gsap/react";
+import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
 import CustomEase from "gsap/dist/CustomEase";
 import styles from "./LandingReveal.module.css";
 
 export default function LandingReveal() {
   const loaderRef = useRef(null);
+  const counterRef = useRef(null);
+  const counterTweenRef = useRef(null);
+  const revealStartedRef = useRef(false);
+  const startTimeRef = useRef(0);
+  const counterValueRef = useRef({ value: 0 });
+  const completionTimeoutRef = useRef(null);
+  const forceTimeoutRef = useRef(null);
+  const { progress, active } = useProgress();
 
-  useEffect(() => {
-    gsap.registerPlugin(CustomEase);
-    CustomEase.create("hop", "0.9, 0, 0.1, 1");
-  }, []);
+  const MIN_LOADER_MS = 1500;
+  const FORCE_COMPLETE_MS = 8000;
 
-  useGSAP(() => {
-    const tl = gsap.timeline({ delay: 0.3, defaults: { ease: "hop" } });
+  const startReveal = () => {
+    if (!loaderRef.current || revealStartedRef.current) return;
+    revealStartedRef.current = true;
 
-    const counts = document.querySelectorAll(`.${styles.count}`);
+    if (completionTimeoutRef.current) {
+      clearTimeout(completionTimeoutRef.current);
+    }
+    if (forceTimeoutRef.current) {
+      clearTimeout(forceTimeoutRef.current);
+    }
+    if (counterTweenRef.current) {
+      counterTweenRef.current.kill();
+    }
 
-    counts.forEach((count, index) => {
-      const digits = count.querySelectorAll(`.${styles.digit} h1`);
-      tl.to(digits, { y: "0%", duration: 1, stagger: 0.075 }, index * 1);
-      if (index < counts.length) {
-        tl.to(
-          digits,
-          { y: "-100%", duration: 1, stagger: 0.075 },
-          index * 1 + 1
-        );
-      }
-    });
+    gsap.set(counterValueRef.current, { value: 100 });
+    if (counterRef.current) {
+      counterRef.current.textContent = "100";
+    }
+
+    const tl = gsap.timeline({ delay: 0.15, defaults: { ease: "hop" } });
 
     tl.to(`.${styles.spinner}`, { opacity: 0, duration: 0.3 });
+    tl.to(`.${styles.counterValue}`, { opacity: 0, duration: 0.3 }, "<");
     tl.to(`.${styles.word} h1`, { y: "0%", duration: 1 }, "<");
     tl.to(`.${styles.divider}`, {
       scaleY: "100%",
@@ -58,15 +69,80 @@ export default function LandingReveal() {
       "<"
     );
 
-    // Fade and disable interaction after reveal
     tl.to(loaderRef.current, {
       opacity: 0,
       duration: 0.7,
       onComplete: () => {
-        loaderRef.current.style.display = "none";
+        if (loaderRef.current) {
+          loaderRef.current.style.display = "none";
+        }
       },
     });
-  });
+  };
+
+  useEffect(() => {
+    gsap.registerPlugin(CustomEase);
+    CustomEase.create("hop", "0.9, 0, 0.1, 1");
+    startTimeRef.current = performance.now();
+
+    if (counterRef.current) {
+      counterRef.current.textContent = "00";
+    }
+
+    forceTimeoutRef.current = setTimeout(() => {
+      startReveal();
+    }, FORCE_COMPLETE_MS);
+
+    return () => {
+      if (counterTweenRef.current) {
+        counterTweenRef.current.kill();
+      }
+      if (completionTimeoutRef.current) {
+        clearTimeout(completionTimeoutRef.current);
+      }
+      if (forceTimeoutRef.current) {
+        clearTimeout(forceTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!counterRef.current || revealStartedRef.current) return;
+
+    const target = Math.min(100, Math.round(progress));
+
+    if (counterTweenRef.current) {
+      counterTweenRef.current.kill();
+    }
+
+    counterTweenRef.current = gsap.to(counterValueRef.current, {
+      value: target,
+      duration: 0.35,
+      ease: "power3.out",
+      onUpdate: () => {
+        const nextValue = Math.round(counterValueRef.current.value);
+        if (counterRef.current) {
+          counterRef.current.textContent = String(nextValue).padStart(2, "0");
+        }
+      },
+    });
+
+    const elapsed = performance.now() - startTimeRef.current;
+    const shouldComplete =
+      target >= 100 || (!active && target > 0) || elapsed >= FORCE_COMPLETE_MS;
+
+    if (!shouldComplete || revealStartedRef.current) return;
+
+    const remaining = Math.max(0, MIN_LOADER_MS - elapsed);
+
+    if (completionTimeoutRef.current) {
+      clearTimeout(completionTimeoutRef.current);
+    }
+
+    completionTimeoutRef.current = setTimeout(() => {
+      startReveal();
+    }, remaining);
+  }, [progress, active]);
 
   return (
     <div className={styles.reveal}>
@@ -94,21 +170,9 @@ export default function LandingReveal() {
         </div>
 
         <div className={styles.counter}>
-          {[
-            ["0", "0"],
-            ["2", "7"],
-            ["6", "5"],
-            ["9", "8"],
-            ["9", "9"],
-          ].map((digits, i) => (
-            <div className={styles.count} key={i}>
-              {digits.map((d, j) => (
-                <div className={styles.digit} key={j}>
-                  <h1>{d}</h1>
-                </div>
-              ))}
-            </div>
-          ))}
+          <h1 ref={counterRef} className={styles.counterValue}>
+            00
+          </h1>
         </div>
       </div>
     </div>

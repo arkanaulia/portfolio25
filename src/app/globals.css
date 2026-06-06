@@ -12,8 +12,11 @@
 html,
 body {
   width: 100%;
-  height: 1300vh;
   background-color: #171717;
+}
+
+body.is-home {
+  height: 1300vh;
 }
 
 .container {
@@ -21,19 +24,15 @@ body {
   height: 100%;
 }
 
-
-section {
+body.is-home section {
   position: relative;
   width: 100vw;
   height: 100vh;
 }
 
-
 footer {
-  position: absolute;
-  top: 1300vh;
-  left: 0;
-  width: 100vw;
+  position: relative;
+  width: 100%;
   height: 75svh;
   background-color: #0f0f0f;
   color: #fff;
@@ -43,6 +42,13 @@ footer {
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+}
+
+body.is-home footer {
+  position: absolute;
+  top: 1300vh;
+  left: 0;
+  width: 100vw;
 }
 
 footer h1 {

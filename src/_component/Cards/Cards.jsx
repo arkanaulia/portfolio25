@@ -19,33 +19,34 @@ export default function Cards({ containerRef }) {
 
   const cardData = [
     {
-      frontSrc: "/cardfront3.jpg",
+      frontSrc: "/cardfront3.webp",
       frontAlt: "Card One",
       backText: "Developer",
-      backSrc: "/hands1.jpg",
+      backSrc: "/hands1.webp",
     },
     {
-      frontSrc: "/cardfront3.jpg",
+      frontSrc: "/cardfront3.webp",
       frontAlt: "Card Two",
       backText: "UI/UX Designer",
-      backSrc: "/hands2.jpg",
+      backSrc: "/hands2.webp",
     },
     {
-      frontSrc: "/cardfront3.jpg",
+      frontSrc: "/cardfront3.webp",
       frontAlt: "Card Three",
       backText: "3D / Motion / Graphics",
-      backSrc: "/hands3.jpg",
+      backSrc: "/hands3.webp",
     },
     {
-      frontSrc: "/cardfront3.jpg",
+      frontSrc: "/cardfront3.webp",
       frontAlt: "Card Four",
       backText: "Product Manager",
-      backSrc: "/hands4.jpg",
+      backSrc: "/hands4.webp",
     },
   ];
 
   useGSAP(() => {
     const cards = cardRefs.current;
+    const createdTriggers = [];
     const totalScrollHeight = window.innerHeight * 3;
     let positions = [14, 38, 62, 86];
     // Responsive positions and rotations
@@ -88,14 +89,16 @@ export default function Cards({ containerRef }) {
     // Remove absolute positioning from .cards2 if present in CSS
     // and ensure it has position: relative or static
 
-    ScrollTrigger.create({
+    createdTriggers.push(
+      ScrollTrigger.create({
       trigger: cardsEl,
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
       anticipatePin: 1,
-    });
+      })
+    );
 
     cards.forEach((card, index) => {
       if (!card) return;
@@ -120,7 +123,8 @@ export default function Cards({ containerRef }) {
       const startOffset = 1 / 3 + staggerOffset;
       const endOffset = 2 / 3 + staggerOffset;
 
-      ScrollTrigger.create({
+      createdTriggers.push(
+        ScrollTrigger.create({
         trigger: cardsEl,
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
@@ -138,13 +142,19 @@ export default function Cards({ containerRef }) {
             });
           }
         },
-      });
+      })
+      );
     });
 
     // Refresh ScrollTrigger after mount to ensure correct pinning
-    setTimeout(() => {
+    const refreshTimeout = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);
+
+    return () => {
+      clearTimeout(refreshTimeout);
+      createdTriggers.forEach((trigger) => trigger.kill());
+    };
   }, [containerRef]);
 
   const handleCardClick = (index) => setActiveCardIndex(index);

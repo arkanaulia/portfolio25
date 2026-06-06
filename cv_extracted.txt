@@ -1,0 +1,113 @@
+Arkan Aulia Farhan
+Jakarta, ID I +62818161965 I arkanaulia@gmail.com I linkedin.com/in/arkanaulia I arkanaulia.super.site
+
+Started in design, picked up development along the way, ended up in product. At Garuda Indonesia I picked up the full stack of what it takes to ship digital features such as working with engineers, aligning stakeholders, tracking what actually moves the numbers. Trusted to managing the major projects especially digital channel development and AI transformations. I like figuring out how things work and making them better.
+
+PROFESSIONAL EXPERIENCE
+
+Garuda Indonesia
+IT Business Alignment	Nov 2023 - Present
+	•	Served as Commercial IT Business Alignment to coordinating with all commercial technical and business aspect such as stakeholder, business user, Amadeus, payment aggregator, loyalty system and external party
+	•	Analyzed technical feasibility for API integration, data flow, user experience and business impact
+	•	Trusted to be a Product Owner for Garuda Indonesia's website and mobile app digital team, managing product roadmap and prioritizing features based on business impact and customer insights in collaboration with engineering, design, and external vendors in agile scrum method
+	•	Led AI Transformation Taskforce, evaluating LLM-powered and AI-driven use cases for digital products including LLM based flight search and Knowledge Management System
+	•	Managed GTM and GA4 implementation alongside Amadeus and analytics consultants, tracking digital KPIs and using data to inform product decisions and UX improvements
+	•	Won 1st Place in Customer Satisfaction (UX) category at Indonesia SOE Technology Adoption Award (Fordigi 2024) for Garuda Indonesia app UX improvements
+	•	Recognized as Garuda Indonesia Best Employee of 2024 in the CEO's Directorate
+
+FXMedia Singapore
+Interaction Designer Intern	Nov 2022 - May 2023
+	•	Created user interface design, motion graphics and graphics design for website, game, VR/AR/XR platforms
+	•	Introduced python programming and artificial intelligent to increase workflow efficiency at FXMedia design team
+
+Tiket.com
+
+Product Designer Intern 	Feb 2022 - Jul 2022
+	•	Contributed to product design projects at one of Indonesia's leading ecommerce platforms, covering wireframing, user research planning, prototyping, and usability testing
+	•	Worked within cross-functional product teams, gaining hands-on exposure to ecommerce product development processes and customer journey design
+
+
+SELECTED VOLUNTEERING EXPERIENCE
+
+
+Barunastra ITS Roboboat Team
+Branding and Media Manager	Jun 2020 – Nov 2022
+	•	Responsible for branding, content creation, social media strategies, and the requirement for design judging (Poster, Video, Website)
+	•	Champions at national and international roboboat competitions
+Paragon Technology And Innovation
+
+Production Manager at IPL	Jul 2021 - Nov 2021	
+	•	Deciding visual concept and standard graphic manual as a founding team
+	•	Responsible to manage the quality of all motion, video, and website design
+StudentsxCEOs League
+
+Head of Web Designer	Mar 2021 - Jul 2021	
+	•	Responsible for creating a website from the ground up with limited human resources and time. I'm in charge of keeping my team organized and comfortable
+
+EDUCATION
+
+lnstitut Teknologi Sepuluh Nopember
+Informatics Engineering	Aug 2019 - Aug 2023
+	•	Coursework in Artificial Intelligence, Web Programming, Data Structures, Object-Oriented Programming, and Human-Computer Interaction
+	•	Hands-on experience with Python, JavaScript (React/Next.js), and web technologies applied in academic and project contexts
+
+SKILL
+
+Analytics  GA4 · Google Tag Manager · Amadeus data feed and DAPI/AIDL API
+Product  Roadmap planning · backlog grooming · user stories · sprint facilitation · UAT
+AI  LLM use case scoping · personalization · AI workflow tooling (JS / N8N / Dify)
+Design & research  Figma · UX research · competitor analysis · usability testing
+Technical  JavaScript · React JS · Next.js · HTML/CSS · REST API
+Languages  Indonesian (native) · English — IELTS 6.5
+Certifications :
+	•	Sanber Code "React JS Web Frontend"
+	•	McKinsey Digital Product Training
+	•	Altea DCS CM & Amadeus Business Rule
+
+HONOR AND AWARD
+
+
+Garuda Indonesia's Best Employees of 2024 - CEO's Directorate
+Garuda Indonesia
+Honored for 2024 CEO's Directorate Best Employees by Garuda Indonesia
+1st Place - Customer Satisfaction (UX) Category
+Indonesia SOE's Technology Adoption Award Fordigi 2024
+Winning the Customer Satisfaction Award for Garuda Indonesia's App UX Among All Indonesian SOEs
+2nd Place - Team's Website
+International Roboboat Competition (IRC) 2023 by Robonation 
+Jan 2025
+
+
+
+Sep 2024
+
+
+
+May 2023
+
+Winning in the international roboboat competition on Florida, USA as UI Designer, video editor and illustrator
+1st Place - Design Documentation
+International Roboboat Competition (IRC) 2022 by Robonation	Jun 2022
+Winning in the international roboboat competition on Florida, USA as UI Designer, video editor and illustrator
+1st Place - Team's Website
+
+International Roboboat Competition (IRC) 2021 by Robonation
+Winning in the international roboboat competition held online as UI designer
+1st Place - Hull Design Skills Video
+International Roboboat Competition (IRC) 2021 by Robonation
+Winning in the international roboboat competition held online as video editor
+Top 10 - Web Design
+Proto-a-than International Prototype Design Competition 2021 by Binus University
+Top 10 on international 10 hours prototyping competition as UI designer
+ Jun 2021
+
+
+
+Jun 2021
+
+
+
+Feb 2021
+
+
+

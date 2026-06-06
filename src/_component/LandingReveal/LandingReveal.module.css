@@ -104,25 +104,12 @@
   z-index: 5;
 }
 
-.reveal .count {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-}
-
-.reveal .digit {
-  flex: 1;
+.reveal .counterValue {
   padding-top: 1rem;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   color: #fff;
-}
-
-.reveal .digit h1 {
   font-size: 15rem;
   font-weight: 400;
   font-family: "PP Editorial Old", "PP Neue Montreal";
-  transform: translateY(120%);
-  will-change: transform;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }

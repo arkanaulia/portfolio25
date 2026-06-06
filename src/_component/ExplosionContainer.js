@@ -7,6 +7,9 @@ const ExplosionContainer = () => {
   const footerRef = useRef(null);
   const [explosionTriggered, setExplosionTriggered] = useState(false);
   const particlesRef = useRef([]);
+  const animationRef = useRef(null);
+  const resetTimeoutRef = useRef(null);
+  const mountedRef = useRef(false);
 
   const config = {
     gravity: 0.25,
@@ -52,9 +55,13 @@ const ExplosionContainer = () => {
   }
 
   const createParticles = () => {
-    if (!explosionContainerRef.current) return;
+    if (!mountedRef.current || !explosionContainerRef.current) return;
 
-    explosionContainerRef.current.innerHTML = "";
+    try {
+      explosionContainerRef.current.innerHTML = "";
+    } catch {
+      return;
+    }
     particlesRef.current = [];
 
     imagePaths.forEach((path) => {
@@ -62,7 +69,7 @@ const ExplosionContainer = () => {
       particle.src = path;
       particle.classList.add("explosion-particle-img");
       particle.style.width = `${config.imageSize}px`;
-      explosionContainerRef.current.appendChild(particle);
+      explosionContainerRef.current?.appendChild(particle);
     });
 
     const particleElements = explosionContainerRef.current.querySelectorAll(
@@ -74,16 +81,15 @@ const ExplosionContainer = () => {
   };
 
   const explode = () => {
-    if (explosionTriggered) return;
+    if (!mountedRef.current || explosionTriggered) return;
     setExplosionTriggered(true);
 
     createParticles();
 
-    let animationId;
     let finished = false;
 
     const animate = () => {
-      if (finished) return;
+      if (finished || !mountedRef.current) return;
 
       particlesRef.current.forEach((particle) => particle.update());
 
@@ -94,15 +100,17 @@ const ExplosionContainer = () => {
             particle.y > explosionContainerRef.current.offsetHeight / 2
         )
       ) {
-        cancelAnimationFrame(animationId);
+        cancelAnimationFrame(animationRef.current);
         finished = true;
-        setTimeout(() => {
-          setExplosionTriggered(false);
+        resetTimeoutRef.current = setTimeout(() => {
+          if (mountedRef.current) {
+            setExplosionTriggered(false);
+          }
         }, config.resetDelay);
         return;
       }
 
-      animationId = requestAnimationFrame(animate);
+      animationRef.current = requestAnimationFrame(animate);
     };
 
     animate();
@@ -123,6 +131,19 @@ const ExplosionContainer = () => {
   };
 
   useEffect(() => {
+    mountedRef.current = true;
+    let alive = true;
+    const timeouts = new Set();
+
+    const schedule = (fn, ms) => {
+      const id = setTimeout(() => {
+        timeouts.delete(id);
+        if (alive) fn();
+      }, ms);
+      timeouts.add(id);
+      return id;
+    };
+
     imagePaths.forEach((path) => {
       const img = new Image();
       img.src = path;
@@ -135,12 +156,14 @@ const ExplosionContainer = () => {
     let checkTimeout;
     const handleScroll = () => {
       clearTimeout(checkTimeout);
-      checkTimeout = setTimeout(checkFooterPosition, 10);
+      checkTimeout = setTimeout(() => {
+        if (alive) checkFooterPosition();
+      }, 10);
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    setTimeout(checkFooterPosition, 500);
+    schedule(checkFooterPosition, 500);
 
     const handleResize = () => {
       setExplosionTriggered(false);
@@ -149,9 +172,15 @@ const ExplosionContainer = () => {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      alive = false;
+      mountedRef.current = false;
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       clearTimeout(checkTimeout);
+      clearTimeout(resetTimeoutRef.current);
+      cancelAnimationFrame(animationRef.current);
+      timeouts.forEach((id) => clearTimeout(id));
+      timeouts.clear();
     };
   }, []);
 

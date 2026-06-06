@@ -7,20 +7,35 @@ import { FaDroplet } from "react-icons/fa6";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
+import dynamic from "next/dynamic";
 import Nav from "../_component/Nav/Nav";
-import HoverLogo from "../_component/HoverLogo";
-import ExplosionContainer from "../_component/ExplosionContainer";
+const HoverLogo = dynamic(() => import("../_component/HoverLogo"), {
+  ssr: false,
+});
+const LandingReveal = dynamic(
+  () => import("../_component/LandingReveal/LandingReveal"),
+  { ssr: false }
+);
+const ExplosionContainer = dynamic(() => import("../_component/ExplosionContainer"), {
+  ssr: false,
+});
 import Cards from "../_component/Cards/Cards";
 import Separate from "../_component/Separate/Separate";
-import LandingReveal from "../_component/LandingReveal/LandingReveal";
 import Works from "../_component/Works/Works";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Home() {
+function Home() {
   const container = useRef(null);
   const logooRef = useRef(null);
   const bglogoRef = useRef(null);
+
+  useEffect(() => {
+    document.body.classList.add("is-home");
+    return () => {
+      document.body.classList.remove("is-home");
+    };
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -47,22 +62,27 @@ export default function Home() {
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 
   useEffect(() => {
-    // Pin the titles as before
-    gsap.to(".logocon", {
-      scrollTrigger: {
-        trigger: ".logocon",
-        start: "top top",
-        endTrigger: ".container",
-        end: "bottom 30%",
-        pin: true,
-        scrub: true,
-      },
+    const ctx = gsap.context(() => {
+      // Pin the titles as before
+      gsap.to(".logocon", {
+        scrollTrigger: {
+          trigger: ".logocon",
+          start: "top top",
+          endTrigger: ".container",
+          end: "bottom 30%",
+          pin: true,
+          scrub: true,
+        },
+      });
     });
+
+    return () => ctx.revert();
   }, []);
 
 
@@ -73,7 +93,7 @@ export default function Home() {
       <div className="container max-w-[100svw] overflow-hidden">
         <section className="hero">
           <div className="sticky top-0 left-0 w-full z-0 bg-[#0a0a0a] h-[35vh]">
-            <div className="NAME w-full h-full bg-[url(/hero1.png)] p-5 bg-cover bg-center flex items-center justify-center">
+            <div className="NAME w-full h-full bg-[url(/hero1.webp)] p-5 bg-cover bg-center flex items-center justify-center">
               <div className="flex flex-col md:flex-row items-start md:items-end justify-center gap-5 md:gap-12 w-[900px]">
                 <Image
                   src="/logo.svg"
@@ -132,10 +152,10 @@ export default function Home() {
 
         <footer className="footer z-20">
           <h1>Everyone Needs Everything</h1>
-          <div className="copyright-info">
-            <p>&copy; 2025 arkanaulia</p>
+          <div className="copyright-info border-t border-white/5 pt-8 mt-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-neutral-500 text-sm font-sans w-full">
+            <p>&copy; {new Date().getFullYear()} arkanaulia. All rights reserved.</p>
             <p className="flex flex-row items-center gap-1">
-              Built with Blood and Tears <FaDroplet />
+              Built with Blood and Tears <FaDroplet className="text-orange-500 animate-pulse" />
             </p>
           </div>
           <ExplosionContainer />
@@ -144,3 +164,5 @@ export default function Home() {
     </ReactLenis>
   );
 }
+
+export default dynamic(() => Promise.resolve(Home), { ssr: false });
